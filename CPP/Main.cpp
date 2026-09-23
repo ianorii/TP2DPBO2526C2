@@ -13,6 +13,7 @@ signed main() {
     cin.tie(0);
 
     print("lets start\n");
+    print("lets start\n");
 
     return 0;
 }
