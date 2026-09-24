@@ -14,6 +14,7 @@ signed main() {
 
     print("lets start\n");
     print("lets start\n");
+    print("lets start\n");
 
     return 0;
 }
