@@ -1,0 +1,77 @@
+================================================================================
+TEST CASE BENAR
+================================================================================
+1.  INSERT "JKT001" "Nike" 250000 "M" "Katon" "Hitam" "Yukka" true 2;
+2.  INSERT "JKT002" "Adidas" 189500 "L" "Denim" "Biru" "Zipper" false 3;
+3.  INSERT "JKT003" "Uniqlo" 99000 "S" "Wol" "Merah" "Mantel" true 0;
+4.  INSERT "JKT004" "Eiger" 275000 "XXL" "Goretex" "Hijau" "Zipper" true 5;
+5.  INSERT "JKT005" "H&M" 120000 "XL" "Flea" "Kuning" "Yukka" true 4;
+6.  INSERT "JKT006" "Zara" 150000 "L" "Kapas" "Hitam" "Mantel" false 1;
+7.  INSERT "JKT007" "Polos" 75000 40 "Katun" "Putih" "Kresek" true 0;
+8.  INSERT "JKT008" "Murah" 25000 "S" "Rayon" "Abu" "Yukka" false 2;
+9.  INSERT "JKT001" "Nike" 350000 "XL" "Wol" "Hitam" "Mantel" true 4;
+10. SHOW;
+11. HELP;
+12. insert "JKT009" "Case" 99000 "M" "Kapas" "Biru" "Zipper" true 1;
+13.    show   ;
+14.  Help ;
+15. INSERT "JKT010" "Spesial" 100000 "M" "Kapas" "Merah" "Yukka" true 1;
+16. EXIT;
+
+
+TEST CASE SALAH
+================================================================================
+1.  INSERT "S01" "Nike" 250000 "M" "Katon" "Hitam" "Yukka" true 2
+    -> lupa tanda ; di akhir baris
+
+2.  SHOW
+    -> lupa tanda ; di akhir baris
+
+3.  INSERT "S03" "Nike" "250000" "M" "Katon" "Hitam" "Yukka" true 2;
+    -> harga diapit tanda kutip
+
+4.  INSERT "S04" "Nike" 250000 M "Katon" "Hitam" "Yukka" true 2;
+    -> ukuran tidak diapit tanda kutip
+
+5.  INSERT "S05" "Nike" 250000 "M" "Katon" "Hitam" "Yukka" true;
+    -> field kurang (8 field)
+
+6.  INSERT "S06" "Nike" 250000 "M" "Katon" "Hitam" "Yukka" true 2 "extra";
+    -> field lebih (10 field)
+
+7.  INSERT "S07" "Nike" abc "M" "Katon" "Hitam" "Yukka" true 2;
+    -> harga bukan angka
+
+8.  INSERT "S08" "Nike" 0 "M" "Katon" "Hitam" "Yukka" true 2;
+    -> harga nol
+
+9.  INSERT "S09" "Nike" -5000 "M" "Katon" "Hitam" "Yukka" true 2;
+    -> harga negatif
+
+10. INSERT "S10" "Nike" 250000 "M" "Katon" "Hitam" "Yukka" ya 2;
+    -> kupluk bukan true/false
+
+11. INSERT "S11" "Nike" 250000 "M" "Katon" "Hitam" "Yukka" true 2.5;
+    -> jumlah_saku bukan bilangan bulat
+
+12. INSERT "S12" "Nike" 250000 "M" "Katon" "Hitam" "Yukka" true -1;
+    -> jumlah_saku negatif
+
+13. INSERT "S13" "Nike" 250000 "" "Katon" "Hitam" "Yukka" true 2;
+    -> field kosong
+
+14. INSERT "S14" "Nike" 250000 "M" "Ka"ton" "Hitam" "Yukka" true 2;
+    -> tanda kutip tidak berpasangan
+
+15. INSERT "S15" "Nike" 250000 "M" "Katon" "Hitam" "Yukka" true 2 "saku;
+    -> tanda kutip pembuka tidak ditutup
+
+16. INSERT "JKT001" "Nike" 250000 "M" "Katon" "Hitam" "Yukka" true 2;
+    INSERT "JKT001" "Adidas" 100000 "L" "Denim" "Biru" "Zipper" false 1;
+    -> id_produk sudah digunakan
+
+17. DELETE "JKT001";
+    -> perintah tidak dikenal
+
+18. SHOW;
+    -> dijalankan sebelum ada INSERT, daftar masih kosong

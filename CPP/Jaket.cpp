@@ -1,35 +1,33 @@
 #include "Pakaian.cpp"
 
-// Class Jaket
+// Class turunan Pakaian: data jaket
+// Atribut: jenis_penutup, kupluk, jumlah_saku
 class Jaket : public Pakaian{
     private:
-        // Atribut
         string jenis_penutup;
         bool kupluk;
         int jumlah_saku;
 
     public:
-        // Empty constructor
+        // Constructor
         Jaket() {}
 
-        // Constructor with parameter
-        Jaket(string jenis_penutup, bool kupluk, int jumlah_saku) {
+        Jaket(string id_produk, string merk, float harga, string ukuran, string bahan, string warna, 
+            string jenis_penutup, bool kupluk, int jumlah_saku) : Pakaian(id_produk, merk, harga, ukuran, bahan, warna) {
             this->jenis_penutup = jenis_penutup;
             this->kupluk = kupluk;
             this->jumlah_saku = jumlah_saku;
         }
 
-        // Setter and getter for jenis penutup
+        // Setter dan getter
         void setJenisPenutup(string jenis_penutup) {this->jenis_penutup = jenis_penutup;}
-        stirng getJenisPenutup() {return jenis_penutup;}
-        
-        // Setter and getter for kupluk
+        string getJenisPenutup() {return jenis_penutup;}
+
         void setKupluk(bool kupluk) {this->kupluk = kupluk;}
-        stirng getJenisKupluk() {return kupluk;}
-        
-        // Setter and getter for jumlah saku
+        bool getJenisKupluk() {return kupluk;}
+
         void setJumlahSaku(int jumlah_saku) {this->jumlah_saku = jumlah_saku;}
-        stirng getJumlahSaku() {return jumlah_saku;}
+        int getJumlahSaku() {return jumlah_saku;}
 
         // Destructor
         ~Jaket() {}
