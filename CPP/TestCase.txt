@@ -2,7 +2,7 @@
 TEST CASE BENAR
 ================================================================================
 INSERT "JKT006" "Zara" 150000 "L" "Kapas" "Hitam" "Mantel" false 1;
-INSERT "JKT007" "Polos" 75000 40 "Katun" "Putih" "Kresek" true 0;
+INSERT "JKT007" "Polos" 75000 "M" "Katun" "Putih" "Kresek" true 0;
 INSERT "JKT008" "Murah" 25000 "S" "Rayon" "Abu" "Yukka" false 2;
 INSERT "JKT009" "Nike" 350000 "XL" "Wol" "Hitam" "Mantel" true 4;
 

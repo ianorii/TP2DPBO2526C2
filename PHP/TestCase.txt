@@ -19,7 +19,7 @@ Test 2
 ID : JKT007
 Merk : Polos
 Harga : 75000
-Ukuran : 40
+Ukuran : M
 Bahan : Katun
 Warna : Putih
 Jenis Penutup : Kresek
