@@ -225,5 +225,8 @@ HELP;
 3. Buka browser dan akses `http://localhost:8000/Main.php`
 
 ### Tampilan Website
+<img src="/mnt/kuliah/Praktikum/DPBO/TP2DPBO2526C2/Dokumentasi/Php/image1.png" width = 600>
 
 ### Menambahkan Data
+<img src="/mnt/kuliah/Praktikum/DPBO/TP2DPBO2526C2/Dokumentasi/Php/image2.png" width = 600><br>
+<img src="/mnt/kuliah/Praktikum/DPBO/TP2DPBO2526C2/Dokumentasi/Php/image3.png" width = 600>

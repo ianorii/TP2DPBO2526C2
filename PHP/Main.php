@@ -565,7 +565,7 @@ function selFoto(Jaket $jaket): string
         </main>
 
         <footer class="footer">
-            <p>Tugas Praktikum DPBO &mdash; Program Management</p>
+            <p>Tugas Praktikum DPBO</p>
         </footer>
     </div>
 </body>
