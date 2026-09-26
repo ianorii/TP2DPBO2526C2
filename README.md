@@ -7,7 +7,7 @@ Saya Muhammad Rian Anugrah dengan NIM 2507241 mengerjakan Tugas Praktikum 2 pada
 
 ```
 TP2DPBO2526C2/
-├── Readme.md
+├── README.md
 ├── CPP/
 │   ├── Produk.cpp
 │   ├── Pakaian.cpp
@@ -18,17 +18,20 @@ TP2DPBO2526C2/
 │   ├── Produk.java
 │   ├── Pakaian.java
 │   ├── Jaket.java
-│   └── Main.java
+│   ├── Main.java
+│   └── TestCase.txt
 ├── Python/
 │   ├── Produk.py
 │   ├── Pakaian.py
 │   ├── Jaket.py
-│   └── Main.py
+│   ├── Main.py
+│   └── TestCase.txt
 ├── PHP/
 │   ├── Produk.php
 │   ├── Pakaian.php
 │   ├── Jaket.php
 │   ├── Main.php
+│   ├── TestCase.txt
 │   └── assets/
 │       ├── image1.png
 │       ├── image2.png
@@ -69,16 +72,10 @@ TP2DPBO2526C2/
 ---
 
 ## Penjelasan Fitur
-
-Program ini menerapkan **inheritance** (pewarisan) tiga tingkat pada domain produk pakaian, yaitu `Produk` → `Pakaian` → `Jaket`. Setiap kelas turunan mewarisi seluruh atribut kelas induknya lalu menambah atribut khasnya sendiri.
-
 ### Fitur Utama
 
-- **Data awal**: program sudah memuat 5 data Jaket default sejak dijalankan, sehingga tabel langsung terisi tanpa perlu menambah data terlebih dahulu.
-- **Pilihan aksi**: pengguna dapat memilih aksi yang tersedia, yaitu menampilkan data atau menambahkan data baru.
-- **Tabel dinamis**: seluruh data yang tersimpan ditampilkan dalam bentuk tabel yang menyesuaikan diri dengan jumlah data, bukan tabel dengan jumlah baris tetap.
+- **Data awal**: program sudah memuat 5 data Jaket default sejak dijalankan.
 - **Input data baru**: pengguna dapat menginput data baru beserta seluruh atributnya.
-- **Data unik**: `id_produk` yang sama tidak dapat dipakai untuk menambahkan data lebih dari satu kali.
 - **CLI version**: versi C++, Java, dan Python berjalan di terminal dengan perintah `INSERT`, `SHOW`, dan `HELP` yang wajib diakhiri tanda titik koma `;`.
 - **WEB version**: versi PHP dengan form untuk memasukkan data dan ada atribut tambahan yaitu foto untuk menyimpan path foto yang digunakan.
 
@@ -86,7 +83,7 @@ Program ini menerapkan **inheritance** (pewarisan) tiga tingkat pada domain prod
 
 <img src="./Dokumentasi/Diagram/diagram.png" alt="diagram class Produk, Pakaian, Jaket" width=600>
 
-Pada diagram di atas terdapat tiga class yang hubungannya membentuk pewarisan bertingkat tiga, yaitu `Produk` sebagai class induk, `Pakaian` sebagai class turunan dari `Produk`, dan `Jaket` sebagai class turunan dari `Pakaian`.
+Pada diagram di atas terdapat tiga class yang hubungannya membentuk multilevel inheritance , yaitu `Produk` sebagai class induk, `Pakaian` sebagai class turunan dari `Produk`, dan `Jaket` sebagai class turunan dari `Pakaian`.
 
 ### Penjelasan Class
 
