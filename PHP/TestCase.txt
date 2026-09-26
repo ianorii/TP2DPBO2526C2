@@ -1,0 +1,137 @@
+================================================================================
+TEST CASE BENAR
+================================================================================
+
+Test 1
+ID : JKT006
+Merk : Zara
+Harga : 150000
+Ukuran : L
+Bahan : Kapas
+Warna : Hitam
+Jenis Penutup : Mantel
+Kupluk : tidak ada
+Jumlah Saku : 1
+Foto : tidak dipilih
+-> sukses, muncul pesan: Jaket "JKT006" (Zara) berhasil ditambahkan. Total 6 Jaket.
+
+Test 2
+ID : JKT007
+Merk : Polos
+Harga : 75000
+Ukuran : 40
+Bahan : Katun
+Warna : Putih
+Jenis Penutup : Kresek
+Kupluk : ada
+Jumlah Saku : 0
+Foto : image6.png
+-> sukses, muncul pesan: Jaket "JKT007" (Polos) berhasil ditambahkan. Total 7 Jaket.
+
+Test 3
+ID : JKT008
+Merk : Murah
+Harga : 25000
+Ukuran : S
+Bahan : Rayon
+Warna : Abu
+Jenis Penutup : Yukka
+Kupluk : tidak ada
+Jumlah Saku : 2
+Foto : tidak dipilih
+-> sukses, muncul pesan: Jaket "JKT008" (Murah) berhasil ditambahkan. Total 8 Jaket.
+
+Test 4
+ID : JKT009
+Merk : Nike
+Harga : 350000
+Ukuran : XL
+Bahan : Wol
+Warna : Hitam
+Jenis Penutup : Mantel
+Kupluk : ada
+Jumlah Saku : 4
+Foto : tidak dipilih
+-> sukses, muncul pesan: Jaket "JKT009" (Nike) berhasil ditambahkan. Total 9 Jaket.
+
+================================================================================
+TEST CASE SALAH
+================================================================================
+
+Test 5
+ID : 
+Merk : Nike
+Harga : 250000
+Ukuran : M
+Bahan : Katon
+Warna : Hitam
+Jenis Penutup : Yukka
+Kupluk : ada
+Jumlah Saku : 2
+Foto : tidak dipilih
+-> id_produk sudah digunakan, muncul pesan: id_produk "JKT001" sudah digunakan, gunakan id_produk yang lain.
+
+Test 6
+ID : JKT010
+Merk : (kosong)
+Harga : 100000
+Ukuran : M
+Bahan : Katon
+Warna : Hitam
+Jenis Penutup : Yukka
+Kupluk : ada
+Jumlah Saku : 2
+Foto : tidak dipilih
+-> field merk kosong, muncul pesan: field "merk" tidak boleh kosong.
+
+Test 7
+ID : JKT010
+Merk : Nike
+Harga : 0
+Ukuran : M
+Bahan : Katon
+Warna : Hitam
+Jenis Penutup : Yukka
+Kupluk : ada
+Jumlah Saku : 2
+Foto : tidak dipilih
+-> harga nol, muncul pesan: field "harga" harus angka lebih besar dari 0.
+
+Test 8
+ID : JKT010
+Merk : Nike
+Harga : abc
+Ukuran : M
+Bahan : Katon
+Warna : Hitam
+Jenis Penutup : Yukka
+Kupluk : ada
+Jumlah Saku : 2
+Foto : tidak dipilih
+-> harga bukan angka, muncul pesan: field "harga" harus angka lebih besar dari 0.
+
+Test 9
+ID : JKT010
+Merk : Nike
+Harga : -5000
+Ukuran : M
+Bahan : Katon
+Warna : Hitam
+Jenis Penutup : Yukka
+Kupluk : ada
+Jumlah Saku : 2
+Foto : tidak dipilih
+-> harga negatif, muncul pesan: field "harga" harus angka lebih besar dari 0.
+
+Test 10
+ID : JKT010
+Merk : Nike
+Harga : 250000
+Ukuran : M
+Bahan : Katon
+Warna : Hitam
+Jenis Penutup : Yukka
+Kupluk : ada
+Jumlah Saku : 2.5
+Foto : tidak dipilih
+-> jumlah_saku bukan bilangan bulat, muncul pesan: field "jumlah_saku" harus angka bulat 0 atau lebih.
