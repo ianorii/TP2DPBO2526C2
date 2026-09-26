@@ -35,7 +35,8 @@ TP2DPBO2526C2/
 │       ├── image2.png
 │       ├── image3.png
 │       ├── image4.png
-│       └── image5.png
+│       ├── image5.png
+│       └── image6.png
 └── Dokumentasi/
     ├── Diagram/
     │   └── diagram.png
@@ -57,6 +58,10 @@ TP2DPBO2526C2/
     ├── Java/
     │   ├── image1.png
     │   └── image2.png
+    ├── Php/
+    │   ├── image1.png
+    │   ├── image2.png
+    │   └── image3.png
     └── Python/
         ├── image1.png
         └── image2.png
@@ -73,13 +78,10 @@ Program ini menerapkan **inheritance** (pewarisan) tiga tingkat pada domain prod
 - **Data awal**: program sudah memuat 5 data Jaket default sejak dijalankan, sehingga tabel langsung terisi tanpa perlu menambah data terlebih dahulu.
 - **Pilihan aksi**: pengguna dapat memilih aksi yang tersedia, yaitu menampilkan data atau menambahkan data baru.
 - **Tabel dinamis**: seluruh data yang tersimpan ditampilkan dalam bentuk tabel yang menyesuaikan diri dengan jumlah data, bukan tabel dengan jumlah baris tetap.
-- **Input data baru**: pengguna dapat menginput data baru beserta seluruh atributnya. Setiap field divalidasi lebih dulu, mulai dari jumlah field, format tanda kutip, tipe data, sampai nilai `harga` dan `jumlah_saku`, dan data hanya disimpan bila seluruh field valid.
+- **Input data baru**: pengguna dapat menginput data baru beserta seluruh atributnya.
 - **Data unik**: `id_produk` yang sama tidak dapat dipakai untuk menambahkan data lebih dari satu kali.
-- **Dua jenis antarmuka**: versi C++, Java, dan Python berjalan di terminal dengan perintah `INSERT`, `SHOW`, dan `HELP` yang wajib diakhiri tanda titik koma `;`, sedangkan versi PHP berjalan di browser memakai form penambahan data.
-
-### Atribut Foto (Khusus PHP)
-
-Atribut `foto` hanya ada pada versi PHP. Field foto pada form berupa daftar pilihan yang diambil otomatis dari isi folder `assets/`, sehingga pengguna tidak perlu mengetik path secara manual, cukup memilih salah satu file foto yang tersedia. Nilai yang terpilih disimpan pada atribut `foto` dan foto tersebut langsung ditampilkan pada kolom pertama di dalam tabel. Foto boleh dikosongkan, dan baris yang tidak memilih foto akan menampilkan teks pengganti `belum ada foto`. Atribut ini tidak ada pada versi CLI karena program terminal tidak memiliki media untuk menampilkan gambar.
+- **CLI version**: versi C++, Java, dan Python berjalan di terminal dengan perintah `INSERT`, `SHOW`, dan `HELP` yang wajib diakhiri tanda titik koma `;`.
+- **WEB version**: versi PHP dengan form untuk memasukkan data dan ada atribut tambahan yaitu foto untuk menyimpan path foto yang digunakan.
 
 ### Diagram Class
 
