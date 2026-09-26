@@ -70,14 +70,16 @@ Program ini menerapkan **inheritance** (pewarisan) tiga tingkat pada domain prod
 
 ### Fitur Utama
 
-Program CLI (C++, Java, Python) bekerja dengan membaca satu baris perintah per iterasi, setiap perintah wajib diakhiri tanda titik koma `;`.
+- **Data awal**: program sudah memuat 5 data Jaket default sejak dijalankan, sehingga tabel langsung terisi tanpa perlu menambah data terlebih dahulu.
+- **Pilihan aksi**: pengguna dapat memilih aksi yang tersedia, yaitu menampilkan data atau menambahkan data baru.
+- **Tabel dinamis**: seluruh data yang tersimpan ditampilkan dalam bentuk tabel yang menyesuaikan diri dengan jumlah data, bukan tabel dengan jumlah baris tetap.
+- **Input data baru**: pengguna dapat menginput data baru beserta seluruh atributnya. Setiap field divalidasi lebih dulu, mulai dari jumlah field, format tanda kutip, tipe data, sampai nilai `harga` dan `jumlah_saku`, dan data hanya disimpan bila seluruh field valid.
+- **Data unik**: `id_produk` yang sama tidak dapat dipakai untuk menambahkan data lebih dari satu kali.
+- **Dua jenis antarmuka**: versi C++, Java, dan Python berjalan di terminal dengan perintah `INSERT`, `SHOW`, dan `HELP` yang wajib diakhiri tanda titik koma `;`, sedangkan versi PHP berjalan di browser memakai form penambahan data.
 
-| Perintah | Deskripsi |
-|----------|-----------|
-| `INSERT ... ;` | Menambah satu produk Jaket baru beserta validasi seluruh field |
-| `SHOW ;` | Menampilkan seluruh Jaket yang tersimpan dalam bentuk tabel |
-| `HELP ;` | Menampilkan daftar perintah yang tersedia |
-| `EXIT ;` | Keluar dari program produk management |
+### Atribut Foto (Khusus PHP)
+
+Atribut `foto` hanya ada pada versi PHP. Field foto pada form berupa daftar pilihan yang diambil otomatis dari isi folder `assets/`, sehingga pengguna tidak perlu mengetik path secara manual, cukup memilih salah satu file foto yang tersedia. Nilai yang terpilih disimpan pada atribut `foto` dan foto tersebut langsung ditampilkan pada kolom pertama di dalam tabel. Foto boleh dikosongkan, dan baris yang tidak memilih foto akan menampilkan teks pengganti `belum ada foto`. Atribut ini tidak ada pada versi CLI karena program terminal tidak memiliki media untuk menampilkan gambar.
 
 ### Diagram Class
 
@@ -87,11 +89,9 @@ Pada diagram di atas terdapat tiga class yang hubungannya membentuk pewarisan be
 
 ### Penjelasan Class
 
-- **`Produk`** adalah class induk yang menyimpan atribut dasar sebuah produk, yaitu `id_produk`, `merk`, dan `harga`. Ketiga atribut ini saya letakkan di sini karena segala sesuatu yang dijual di toko pasti memiliki ID, merk, dan harga, serta produk tidak selalu berupa barang fisik saja karena bisa juga berupa jasa. Atribut yang lebih spesifik seperti ukuran, bahan, dan warna tidak saya letakkan di `Produk` karena produk lain seperti voucher, pulsa, atau jasa servis tidak memiliki ukuran maupun warna. `Produk` saya jadikan class paling atas karena ia merupakan class yang paling general sehingga cocok menjadi superclass dari seluruh objek yang diturunkan, sehingga atribut dasar cukup ditulis satu kali saja tanpa diulang pada setiap class turunan (prinsip DRY).
-- **`Pakaian`** adalah class turunan `Produk` yang menambah atribut `ukuran`, `bahan`, dan `warna`. `Pakaian` merupakan kategori yang lebih khusus dari `Produk`, karena semua pakaian jelas merupakan produk tetapi tidak semua produk merupakan pakaian. Ketiga atribut tersebut hanya relevan untuk produk yang dipakai pada tubuh seperti kaos, kemeja, dan dress, sedangkan produk non-pakaian seperti TV, rice cooker, atau shampoo tidak memiliki ukuran maupun warna yang punya arti mode. Saya memilih `Pakaian` sebagai class perantara dan tidak langsung menurunkan `Jaket` dari `Produk`, karena jika langsung diturunkan maka `ukuran`, `bahan`, dan `warna` harus ditulis ulang pada `Jaket`.
-- **`Jaket`** adalah class turunan `Pakaian` yang menambah atribut `jenis_penutup`, `kupluk`, dan `jumlah_saku`. Saya memilih satu contoh saja yaitu jaket karena ke depannya program ini bisa ditambahkan class lain seperti `Kaos`, `Kemeja`, atau `Celana` yang diturunkan dari `Pakaian`, sehingga otomatis menjadi turunan `Produk` juga tanpa perlu menulis ulang atribut. Ketiga atribut tersebut hanya saya letakkan pada `Jaket` karena benar-benar hanya relevan untuk jaket, yaitu `jenis_penutup` yang hanya ada pada pakaian jenis outer, `kupluk` yang hanya ada pada jaket penutup kepala, dan `jumlah_saku` yang tidak dimiliki kaos, sehingga menaruhnya di `Pakaian` atau `Produk` akan membuat sebagian besar class turunan memiliki atribut kosong yang tidak pernah diisi. Saya memilih tiga tingkat `Produk` → `Pakaian` → `Jaket` dan bukan langsung dua tingkat karena pada tingkat yang sama dapat dibuat class lain yang memiliki ciri serupa, misalnya `Kaos` yang juga memiliki ukuran, bahan, dan warna.
-
-Atribut `foto` sengaja hanya ada pada versi PHP karena pada program CLI tidak ada media yang cukup untuk menampilkan gambar, sedangkan pada program Web foto dapat langsung dirender di dalam tabel.
+- **`Produk`** adalah class induk yang menyimpan atribut dasar, yaitu `id_produk`, `merk`, dan `harga`. Atribut ini saya letakkan di sini karena semua yang dijual di toko pasti memiliki ID, merk, dan harga, sementara atribut seperti ukuran, bahan, dan warna tidak dimiliki produk berjasa seperti voucher atau pulsa. `Produk` saya jadikan class paling atas karena paling general sehingga cocok menjadi superclass, sehingga atribut dasar cukup ditulis sekali saja (prinsip DRY).
+- **`Pakaian`** adalah class turunan `Produk` yang menambah atribut `ukuran`, `bahan`, dan `warna`. Ketiganya hanya relevan untuk produk yang dipakai pada tubuh, sedangkan produk seperti TV atau shampoo tidak memiliki ukuran dan warna yang berarti. Saya menjadikannya class perantara agar `Jaket` memakai atribut tersebut tanpa perlu menyalin ulang kodenya.
+- **`Jaket`** adalah class turunan `Pakaian` yang menambah atribut `jenis_penutup`, `kupluk`, dan `jumlah_saku`. Ketiganya hanya relevan untuk jaket sehingga tidak saya letakkan di class atas agar class turunan lain seperti `Kaos` tidak memiliki atribut kosong. Saya memilih jaket karena ke depannya bisa ditambah `Kaos` atau `Kemeja` yang tetap mewarisi seluruh atribut tanpa menulis ulang.
 
 ---
 
@@ -226,25 +226,4 @@ HELP;
 
 ### Tampilan Website
 
-Halaman ini memuat form penambahan data di atas dan tabel seluruh data Jaket di bawahnya. Foto produk ditampilkan pada kolom pertama, dan otomatis diganti teks `belum ada foto` bila path yang diisi tidak menunjuk ke file yang benar-benar ada.
-
 ### Menambahkan Data
-
-Isi seluruh field pada form, lalu tekan tombol `Tambah Data`. Data yang berhasil disimpan langsung muncul di tabel pada halaman yang sama, tanpa perlu refresh. Field `Path Foto` diisi relatif terhadap folder `PHP/`, contoh `assets/image1.png`.
-
-Bila field `Path Foto` dikosongkan atau diisi path yang salah, tabel tetap menampilkan baris tersebut dengan teks pengganti `belum ada foto`, bukan gambar rusak.
-
-### Penyimpanan Data
-
-Lima data Jaket pertama ditulis di `PHP/data.php` sebagai data awal dan selalu muncul saat halaman dibuka. Data hasil penambahan form disimpan di `$_SESSION`, bukan di database, sehingga isinya hanya bertahan selama sesi browser masih hidup. Ketika sesi berakhir, tabel kembali berisi lima data awal.
-
-### Error Handling
-
-Seluruh pesan error ditampilkan sekaligus di atas form dalam bentuk daftar, dan isian form yang sudah diketik tidak ikut terhapus supaya mudah diperbaiki.
-
-1. Field teks dikosongkan
-2. `harga` bukan angka atau tidak lebih besar dari 0
-3. `jumlah_saku` bukan bilangan bulat 0 atau lebih
-4. `id_produk` sudah digunakan
-
-Tidak ada satu pun data yang tersimpan bila ada satu saja field yang tidak valid.

@@ -38,8 +38,79 @@ $form = [
     "jenis_penutup" => "",
     "kupluk" => "true",
     "jumlah_saku" => "",
-    "foto" => "",
 ];
+
+// Ekstensi file foto yang boleh diunggah ke dalam folder assets/
+const EKSTENSI_FOTO = ["jpg", "jpeg", "png", "gif", "webp"];
+
+// Batas ukuran file foto yang boleh diunggah dalam byte
+const BATAS_UKURAN_FOTO = 2 * 1024 * 1024;
+
+// Menyimpan file foto yang dipilih user ke dalam folder assets/ lalu
+// mengembalikan path-nya yang relatif terhadap folder PHP/ agar bisa dipanggil
+// langsung dari HTML. Nilai balik null bila tidak ada file yang dipilih atau
+// file gagal disimpan. Error handling: setiap kondisi gagal menambah pesan ke
+// daftar $errors yang dikirim lewat parameter
+function simpanFoto(array $berkas, array &$errors): ?string
+{
+    // Tidak ada file yang dipilih bukan error, foto boleh dikosongkan
+    if ($berkas["error"] === UPLOAD_ERR_NO_FILE) {
+        return null;
+    }
+
+    // Error handling: upload dihentikan server karena file melebihi batas
+    // upload_max_filesize atau post_max_size
+    if ($berkas["error"] === UPLOAD_ERR_INI_SIZE || $berkas["error"] === UPLOAD_ERR_FORM_SIZE) {
+        $errors[] = "file foto melebihi batas ukuran yang diizinkan server.";
+        return null;
+    }
+
+    // Error handling: upload gagal karena koneksi putus, tidak ada ruang di
+    // folder tujuan, atau pengirimannya terhenti di tengah jalan
+    if ($berkas["error"] !== UPLOAD_ERR_OK) {
+        $errors[] = "file foto gagal diunggah, kode error " . $berkas["error"] . ".";
+        return null;
+    }
+
+    // Memastikan file benar-benar hasil upload, bukan path yang dipalsukan
+    if (!is_uploaded_file($berkas["tmp_name"])) {
+        $errors[] = "file foto tidak valid.";
+        return null;
+    }
+
+    // Hanya file gambar yang boleh masuk, contoh .php ditolak di sini
+    $ekstensi = strtolower(pathinfo($berkas["name"], PATHINFO_EXTENSION));
+    if (!in_array($ekstensi, EKSTENSI_FOTO, true)) {
+        $errors[] = "file foto harus ber ekstensi " . implode(", ", EKSTENSI_FOTO) . ".";
+        return null;
+    }
+
+    // Ukuran file diperiksa ulang karena file yang terlalu besar bisa saja lolos
+    // dari pengecekan error di atas, misalnya saat batas server dinaikkan
+    if ($berkas["size"] > BATAS_UKURAN_FOTO) {
+        $errors[] = "ukuran file foto maksimal "
+            . (int) (BATAS_UKURAN_FOTO / 1024 / 1024) . " MB.";
+        return null;
+    }
+
+    // Nama file dipakai sesuai aslinya, jadi file dengan nama sama akan ditimpa.
+    // basename() membuang bagian path supaya file tidak bisa ditulis ke luar
+    // folder assets/
+    $nama = basename($berkas["name"]);
+
+    // Error handling: folder assets/ belum ada atau tidak bisa ditulis
+    if (!is_dir(__DIR__ . '/assets')) {
+        $errors[] = "folder assets/ tidak ditemukan, file foto tidak dapat disimpan.";
+        return null;
+    }
+
+    if (!move_uploaded_file($berkas["tmp_name"], __DIR__ . '/assets/' . $nama)) {
+        $errors[] = "file foto gagal disimpan ke dalam folder assets/.";
+        return null;
+    }
+
+    return 'assets/' . $nama;
+}
 
 // Kumpulan pesan error dari validasi
 $errors = [];
@@ -84,6 +155,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
+    // Memproses file foto yang dipilih user. Foto tidak wajib dipilih, tapi
+    // bila dipilih filenya langsung disalin ke dalam folder assets/ dan
+    // path-nya yang disimpan ke atribut foto
+    $foto = "";
+
+    if (isset($_FILES["foto"])) {
+        $foto = simpanFoto($_FILES["foto"], $errors) ?? "";
+    }
+
     // Error handling: kalau ada satu saja field yang salah, data tidak disimpan
     if (count($errors) > 0) {
         $sukses = "";
@@ -98,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             "jenis_penutup" => $form["jenis_penutup"],
             "kupluk" => $form["kupluk"] === "true",
             "jumlah_saku" => (int) $form["jumlah_saku"],
-            "foto" => $form["foto"],
+            "foto" => $foto,
         ];
 
         $_SESSION["tambahan"][] = $tambahan;
@@ -295,7 +375,29 @@ function selFoto(Jaket $jaket): string
         .field select:focus {
             outline: none;
             border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+
+        /* Input file tidak diberi border karena sudah punya tampilan bawaan
+           dari browser, tombolnya yang diberi warna agar tetap serasi */
+        .field input[type="file"] {
+            padding: 4px;
+            background: #f8fafc;
+        }
+
+        .field input[type="file"]::file-selector-button {
+            margin-right: 10px;
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: 13px;
+            color: #ffffff;
+            background: #6366f1;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .field input[type="file"]::file-selector-button:hover {
+            background: #4f46e5;
         }
 
         button {
@@ -375,7 +477,8 @@ function selFoto(Jaket $jaket): string
                 <div class="pesan pesan-sukses"><?= htmlspecialchars($sukses) ?></div>
             <?php endif; ?>
 
-            <form method="post" action="">
+            <!-- enctype multipart/form-data wajib agar file foto ikut terkirim -->
+            <form method="post" action="" enctype="multipart/form-data">
                 <div class="form-grid">
                     <div class="field">
                         <label for="id_produk">ID Produk</label>
@@ -426,10 +529,9 @@ function selFoto(Jaket $jaket): string
                                value="<?= htmlspecialchars($form["jumlah_saku"]) ?>">
                     </div>
                     <div class="field">
-                        <label for="foto">Path Foto</label>
-                        <input type="text" id="foto" name="foto"
-                               value="<?= htmlspecialchars($form["foto"]) ?>"
-                               placeholder="assets/image1.png">
+                        <label for="foto">Foto</label>
+<?php // accept= membuat file picker hanya menampilkan file gambar ?>
+                        <input type="file" id="foto" name="foto" accept="image/*">
                     </div>
                 </div>
                 <button type="submit">Tambah Data</button>
