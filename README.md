@@ -72,6 +72,9 @@ TP2DPBO2526C2/
 ---
 
 ## Penjelasan Fitur
+
+Program ini menerapkan **inheritance** (pewarisan) tiga tingkat pada domain produk pakaian, yaitu `Produk` → `Pakaian` → `Jaket`. Setiap kelas turunan mewarisi seluruh atribut kelas induknya lalu menambah atribut khasnya sendiri.
+
 ### Fitur Utama
 
 - **Data awal**: program sudah memuat 5 data Jaket default sejak dijalankan.
@@ -90,43 +93,6 @@ Pada diagram di atas terdapat tiga class yang hubungannya membentuk multilevel i
 - **`Produk`** adalah class induk yang menyimpan atribut dasar, yaitu `id_produk`, `merk`, dan `harga`. Atribut ini saya letakkan di sini karena semua yang dijual di toko pasti memiliki ID, merk, dan harga, sementara atribut seperti ukuran, bahan, dan warna tidak dimiliki produk berjasa seperti voucher atau pulsa. `Produk` saya jadikan class paling atas karena paling general sehingga cocok menjadi superclass, sehingga atribut dasar cukup ditulis sekali saja (prinsip DRY).
 - **`Pakaian`** adalah class turunan `Produk` yang menambah atribut `ukuran`, `bahan`, dan `warna`. Ketiganya hanya relevan untuk produk yang dipakai pada tubuh, sedangkan produk seperti TV atau shampoo tidak memiliki ukuran dan warna yang berarti. Saya menjadikannya class perantara agar `Jaket` memakai atribut tersebut tanpa perlu menyalin ulang kodenya.
 - **`Jaket`** adalah class turunan `Pakaian` yang menambah atribut `jenis_penutup`, `kupluk`, dan `jumlah_saku`. Ketiganya hanya relevan untuk jaket sehingga tidak saya letakkan di class atas agar class turunan lain seperti `Kaos` tidak memiliki atribut kosong. Saya memilih jaket karena ke depannya bisa ditambah `Kaos` atau `Kemeja` yang tetap mewarisi seluruh atribut tanpa menulis ulang.
-
----
-
-## Error Handling Program CLI
-
-### 1. Perintah Tidak Diakhiri Tanda Titik Koma
-<img src="./Dokumentasi/Error/error1.png" width=600>
-
-### 2. Jumlah Field INSERT Tidak Sesuai
-<img src="./Dokumentasi/Error/error2.png" width=600>
-
-### 3. Field Teks Tidak Diapit Tanda Kutip
-<img src="./Dokumentasi/Error/error3.png" width=600>
-
-### 4. Field Angka atau Boolean Diapit Tanda Kutip
-<img src="./Dokumentasi/Error/error4.png" width=600>
-
-### 5. Harga Bukan Angka atau Tidak Lebih Besar dari 0
-<img src="./Dokumentasi/Error/error5.png" width=600>
-
-### 6. Nilai Kupluk Bukan true atau false
-<img src="./Dokumentasi/Error/error6.png" width=600>
-
-### 7. Jumlah Saku Bukan Bilangan Bulat 0 atau Lebih
-<img src="./Dokumentasi/Error/error7.png" width=600>
-
-### 8. Field Teks Kosong
-<img src="./Dokumentasi/Error/error8.png" width=600>
-
-### 9. Tanda Kutip Tidak Berpasangan
-<img src="./Dokumentasi/Error/error9.png" width=600>
-
-### 10. ID Produk Sudah Digunakan
-<img src="./Dokumentasi/Error/error10.png" width=600>
-
-### 11. Perintah Tidak Diketahui
-<img src="./Dokumentasi/Error/error11.png" width=600>
 
 ---
 
@@ -205,6 +171,43 @@ SHOW;
 HELP;
 ```
 <img src="./Dokumentasi/Python/image2.png" width=600>
+
+---
+
+## Error Handling Program CLI
+
+### 1. Perintah Tidak Diakhiri Tanda Titik Koma
+<img src="./Dokumentasi/Error/error1.png" width=600>
+
+### 2. Jumlah Field INSERT Tidak Sesuai
+<img src="./Dokumentasi/Error/error2.png" width=600>
+
+### 3. Field Teks Tidak Diapit Tanda Kutip
+<img src="./Dokumentasi/Error/error3.png" width=600>
+
+### 4. Field Angka atau Boolean Diapit Tanda Kutip
+<img src="./Dokumentasi/Error/error4.png" width=600>
+
+### 5. Harga Bukan Angka atau Tidak Lebih Besar dari 0
+<img src="./Dokumentasi/Error/error5.png" width=600>
+
+### 6. Nilai Kupluk Bukan true atau false
+<img src="./Dokumentasi/Error/error6.png" width=600>
+
+### 7. Jumlah Saku Bukan Bilangan Bulat 0 atau Lebih
+<img src="./Dokumentasi/Error/error7.png" width=600>
+
+### 8. Field Teks Kosong
+<img src="./Dokumentasi/Error/error8.png" width=600>
+
+### 9. Tanda Kutip Tidak Berpasangan
+<img src="./Dokumentasi/Error/error9.png" width=600>
+
+### 10. ID Produk Sudah Digunakan
+<img src="./Dokumentasi/Error/error10.png" width=600>
+
+### 11. Perintah Tidak Diketahui
+<img src="./Dokumentasi/Error/error11.png" width=600>
 
 ---
 
