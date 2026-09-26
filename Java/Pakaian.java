@@ -22,7 +22,7 @@ public class Pakaian extends Produk {
         this.warna = warna;
     }
 
-    // Setter dan getter
+    // Setter dan getter for ukuran
     public void setUkuran(String ukuran) {
         this.ukuran = ukuran;
     }
@@ -31,6 +31,7 @@ public class Pakaian extends Produk {
         return ukuran;
     }
 
+    // Setter dan getter for bahan
     public void setBahan(String bahan) {
         this.bahan = bahan;
     }
@@ -39,6 +40,7 @@ public class Pakaian extends Produk {
         return bahan;
     }
 
+    // Setter dan getter for warna
     public void setWarna(String warna) {
         this.warna = warna;
     }

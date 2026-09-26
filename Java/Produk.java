@@ -19,7 +19,7 @@ public class Produk {
         this.harga = harga;
     }
 
-    // Setter dan getter
+    // Setter dan getter for idProduk
     public void setIdProduk(String idProduk) {
         this.idProduk = idProduk;
     }
@@ -28,6 +28,7 @@ public class Produk {
         return idProduk;
     }
 
+    // Setter dan getter for merk
     public void setMerk(String merk) {
         this.merk = merk;
     }
@@ -36,6 +37,7 @@ public class Produk {
         return merk;
     }
 
+    // Setter dan getter for harga
     public void setHarga(float harga) {
         this.harga = harga;
     }

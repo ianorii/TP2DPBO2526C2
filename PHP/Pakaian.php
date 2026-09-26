@@ -26,7 +26,7 @@ class Pakaian extends Produk
         $this->warna = $warna;
     }
 
-    // Setter dan getter untuk ukuran
+    // Setter dan getter for ukuran
     public function setUkuran(string $ukuran): void
     {
         $this->ukuran = $ukuran;
@@ -37,7 +37,7 @@ class Pakaian extends Produk
         return $this->ukuran;
     }
 
-    // Setter dan getter untuk bahan
+    // Setter dan getter for bahan
     public function setBahan(string $bahan): void
     {
         $this->bahan = $bahan;
@@ -48,7 +48,7 @@ class Pakaian extends Produk
         return $this->bahan;
     }
 
-    // Setter dan getter untuk warna
+    // Setter dan getter for warna
     public function setWarna(string $warna): void
     {
         $this->warna = $warna;

@@ -12,19 +12,21 @@ class Jaket(Pakaian):
         self.kupluk = kupluk
         self.jumlah_saku = jumlah_saku
 
-    # Setter dan getter
+    # Setter dan getter for jenis_penutup
     def set_jenis_penutup(self, jenis_penutup):
         self.jenis_penutup = jenis_penutup
 
     def get_jenis_penutup(self):
         return self.jenis_penutup
 
+    # Setter dan getter for kupluk
     def set_kupluk(self, kupluk):
         self.kupluk = kupluk
 
     def get_kupluk(self):
         return self.kupluk
 
+    # Setter dan getter for jumlah_saku
     def set_jumlah_saku(self, jumlah_saku):
         self.jumlah_saku = jumlah_saku
 

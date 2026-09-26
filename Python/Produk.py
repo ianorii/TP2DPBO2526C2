@@ -8,19 +8,21 @@ class Produk:
         self.merk = merk
         self.harga = harga
 
-    # Setter dan getter
+    # Setter dan getter for id_produk
     def set_id(self, id_produk):
         self.id_produk = id_produk
 
     def get_id(self):
         return self.id_produk
 
+    # Setter dan getter for merk
     def set_merk(self, merk):
         self.merk = merk
 
     def get_merk(self):
         return self.merk
 
+    # Setter dan getter for harga
     def set_harga(self, harga):
         self.harga = harga
 

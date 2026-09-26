@@ -23,7 +23,7 @@ public class Jaket extends Pakaian {
         this.jumlahSaku = jumlahSaku;
     }
 
-    // Setter dan getter
+    // Setter dan getter for jenisPenutup
     public void setJenisPenutup(String jenisPenutup) {
         this.jenisPenutup = jenisPenutup;
     }
@@ -32,6 +32,7 @@ public class Jaket extends Pakaian {
         return jenisPenutup;
     }
 
+    // Setter dan getter for kupluk
     public void setKupluk(boolean kupluk) {
         this.kupluk = kupluk;
     }
@@ -40,6 +41,7 @@ public class Jaket extends Pakaian {
         return kupluk;
     }
 
+    // Setter dan getter for jumlahSaku
     public void setJumlahSaku(int jumlahSaku) {
         this.jumlahSaku = jumlahSaku;
     }

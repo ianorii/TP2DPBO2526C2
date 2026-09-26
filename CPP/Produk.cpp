@@ -16,13 +16,15 @@ class Produk {
             this->harga = harga;
         }
 
-        // Setter dan getter
+        // Setter dan getter for id_produk
         void setId(string id_produk) {this->id_produk = id_produk;}
         string getId() {return id_produk;}
 
+        // Setter dan getter for merk
         void setMerk(string merk) {this->merk = merk;}
         string getMerk() {return merk;}
 
+        // Setter dan getter for harga
         void setHarga(float harga) {this->harga = harga;}
         float getHarga() {return harga;}
 

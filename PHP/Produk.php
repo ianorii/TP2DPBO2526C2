@@ -16,7 +16,7 @@ class Produk
         $this->harga = $harga;
     }
 
-    // Setter dan getter untuk ID
+    // Setter dan getter for id_produk
     public function setIdProduk(string $id_produk): void
     {
         $this->id_produk = $id_produk;
@@ -27,7 +27,7 @@ class Produk
         return $this->id_produk;
     }
 
-    // Setter dan getter untuk merk
+    // Setter dan getter for merk
     public function setMerk(string $merk): void
     {
         $this->merk = $merk;
@@ -38,7 +38,7 @@ class Produk
         return $this->merk;
     }
 
-    // Setter dan getter untuk harga
+    // Setter dan getter for harga
     public function setHarga(float $harga): void
     {
         $this->harga = $harga;

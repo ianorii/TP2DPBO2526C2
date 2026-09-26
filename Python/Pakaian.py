@@ -12,19 +12,21 @@ class Pakaian(Produk):
         self.bahan = bahan
         self.warna = warna
 
-    # Setter dan getter
+    # Setter dan getter for ukuran
     def set_ukuran(self, ukuran):
         self.ukuran = ukuran
 
     def get_ukuran(self):
         return self.ukuran
 
+    # Setter dan getter for bahan
     def set_bahan(self, bahan):
         self.bahan = bahan
 
     def get_bahan(self):
         return self.bahan
 
+    # Setter dan getter for warna
     def set_warna(self, warna):
         self.warna = warna
 

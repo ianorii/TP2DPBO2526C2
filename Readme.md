@@ -28,7 +28,6 @@ TP2DPBO2526C2/
 │   ├── Produk.php
 │   ├── Pakaian.php
 │   ├── Jaket.php
-│   ├── data.php
 │   ├── Main.php
 │   └── assets/
 │       ├── image1.png
