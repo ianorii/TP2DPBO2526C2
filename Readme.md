@@ -39,18 +39,27 @@ TP2DPBO2526C2/
 └── Dokumentasi/
     ├── Diagram/
     │   └── diagram.png
-    └── Error/
-        ├── error1.png
-        ├── error2.png
-        ├── error3.png
-        ├── error4.png
-        ├── error5.png
-        ├── error6.png
-        ├── error7.png
-        ├── error8.png
-        ├── error9.png
-        ├── error10.png
-        └── error11.png
+    ├── Error/
+    │   ├── error1.png
+    │   ├── error2.png
+    │   ├── error3.png
+    │   ├── error4.png
+    │   ├── error5.png
+    │   ├── error6.png
+    │   ├── error7.png
+    │   ├── error8.png
+    │   ├── error9.png
+    │   ├── error10.png
+    │   └── error11.png
+    ├── CPP/
+    │   ├── image1.png
+    │   └── image2.png
+    ├── Java/
+    │   ├── image1.png
+    │   └── image2.png
+    └── Python/
+        ├── image1.png
+        └── image2.png
 ```
 
 ---
@@ -70,77 +79,17 @@ Program CLI (C++, Java, Python) bekerja dengan membaca satu baris perintah per i
 | `HELP ;` | Menampilkan daftar perintah yang tersedia |
 | `EXIT ;` | Keluar dari program produk management |
 
-Program Web (PHP) menyajikan data domain yang sama dalam bentuk form dan tabel, bukan CLI.
-
-| Fitur | Deskripsi |
-|-------|-----------|
-| Tambah Data | Menambahkan data Jaket baru melalui form (ID, merk, harga, ukuran, bahan, warna, jenis penutup, kupluk, jumlah saku, path foto) |
-| Lihat Data | Menampilkan seluruh data Jaket dalam bentuk tabel beserta foto produknya |
-| Validasi Form | Menampilkan seluruh pesan error sekaligus bila ada field yang tidak valid |
-| Penyimpanan Sesi | Data hasil tambah disimpan di `$_SESSION` dan digabung dengan data awal saat halaman dibuka |
-
 ### Diagram Class
 
 <img src="./Dokumentasi/Diagram/diagram.png" alt="diagram class Produk, Pakaian, Jaket" width=600>
 
 Pada diagram di atas terdapat tiga class yang hubungannya membentuk pewarisan bertingkat tiga, yaitu `Produk` sebagai class induk, `Pakaian` sebagai class turunan dari `Produk`, dan `Jaket` sebagai class turunan dari `Pakaian`.
 
-### Class Produk
+### Penjelasan Class
 
-Class induk, menyimpan atribut dasar sebuah produk.
-
-| Atribut | Tipe | Deskripsi |
-|---------|------|-----------|
-| `id_produk` | string | ID unik produk |
-| `merk` | string | Nama merk produk |
-| `harga` | float | Harga produk (rupiah) |
-
-**Alasan pemilihan class:**
-
-- Produk: `Produk` merupakan class paling umum dalam toko, bukan hanya barang fisik saja, produk juga bisa berupa jasa. Segala sesuatu yang dijual di toko pasti memiliki ID, merk, dan harga, sehingga ketiga atribut ini saya letakkan di sini. Atribut yang lebih spesifik seperti ukuran, bahan, dan warna tidak saya letakkan di `Produk` karena produk lain seperti voucher, pulsa, atau jasa servis tidak memiliki ukuran maupun warna.
-- `Produk` saya jadikan class paling atas (induk) karena ia merupakan class yang paling general sehingga cocok menjadi superclass dari seluruh objek yang akan diturunkan. Dengan begitu, atribut dasar cukup ditulis satu kali saja dan tidak perlu diulang pada setiap class turunan (prinsip DRY, Don't Repeat Yourself).
-
-### Class Pakaian
-
-Class turunan `Produk`, menambah atribut khusus pakaian.
-
-| Atribut | Tipe | Deskripsi |
-|---------|------|-----------|
-| `id_produk` | string | ID unik produk (diwarisi dari `Produk`) |
-| `merk` | string | Nama merk produk (diwarisi dari `Produk`) |
-| `harga` | float | Harga produk (diwarisi dari `Produk`) |
-| `ukuran` | string | Ukuran pakaian, contoh `M`, `L`, `XXL` |
-| `bahan` | string | Bahan dasar pakaian, contoh `Katon`, `Denim` |
-| `warna` | string | Warna pakaian, contoh `Hitam`, `Biru` |
-
-**Alasan pemilihan class:**
-
-- Pakaian: `Pakaian` merupakan kategori yang lebih khusus dari `Produk`. Ibarat `Pakaian` adalah salah satu jenis dari `Produk`, karena semua pakaian jelas merupakan produk tetapi tidak semua produk merupakan pakaian. Karena itu `Pakaian` dibuat sebagai class turunan dari `Produk` dan langsung mewarisi `id_produk`, `merk`, serta `harga`.
-- Atribut `ukuran`, `bahan`, dan `warna` saya letakkan pada `Pakaian` dan bukan pada `Produk` karena ketiga atribut ini hanya relevan untuk produk yang dipakai pada tubuh, seperti kaos, kemeja, dan dress. Produk non-pakaian seperti TV, rice cooker, atau shampoo tidak memiliki ukuran maupun warna yang punya arti mode.
-- Saya memilih `Pakaian` sebagai class perantara (intermediate) dan tidak langsung menurunkan `Jaket` dari `Produk` karena jika langsung diturunkan, atribut `ukuran`, `bahan`, dan `warna` harus ditulis ulang pada `Jaket`. Dengan `Pakaian` sebagai perantara, `Jaket` tetap bisa memakai atribut tersebut tanpa menyalin ulang kode yang sama.
-
-### Class Jaket
-
-Class turunan `Pakaian`, menambah atribut khusus jaket.
-
-| Atribut | Tipe | Deskripsi |
-|---------|------|-----------|
-| `id_produk` | string | ID unik produk (diwarisi dari `Produk`) |
-| `merk` | string | Nama merk produk (diwarisi dari `Produk`) |
-| `harga` | float | Harga produk (diwarisi dari `Produk`) |
-| `ukuran` | string | Ukuran jaket (diwarisi dari `Pakaian`) |
-| `bahan` | string | Bahan dasar jaket (diwarisi dari `Pakaian`) |
-| `warna` | string | Warna jaket (diwarisi dari `Pakaian`) |
-| `jenis_penutup` | string | Jenis penutup jaket, contoh `Zipper`, `Yukka`, `Mantel` |
-| `kupluk` | bool | Apakah jaket memakai kupluk, `true` atau `false` |
-| `jumlah_saku` | int | Jumlah kantong pada jaket, 0 atau lebih |
-| `foto` | string | Path file foto produk (khusus versi PHP) |
-
-**Alasan pemilihan class:**
-
-- Jaket: `Jaket` merupakan turunan dari `Pakaian` dan secara transitif juga turunan dari `Produk`. Saya memilih satu contoh saja yaitu jaket karena ke depannya program ini bisa ditambahkan class lain seperti `Kaos`, `Kemeja`, atau `Celana` yang diturunkan dari `Pakaian`, sehingga otomatis menjadi turunan `Produk` juga tanpa perlu menulis ulang atribut.
-- `jenis_penutup`, `kupluk`, dan `jumlah_saku` hanya saya letakkan pada `Jaket` karena ketiganya benar-benar hanya relevan untuk jaket. Contohnya `jenis_penutup` hanya ada pada pakaian jenis outer, dan `kupluk` hanya ada pada jaket yang menutup kepala, sedangkan kaos sama sekali tidak punya kedua atribut tersebut. Menaruh atribut tersebut di `Pakaian` atau `Produk` akan membuat sebagian besar class turunan memiliki atribut kosong yang tidak pernah diisi.
-- Saya memilih tiga tingkat `Produk` → `Pakaian` → `Jaket` dan bukan langsung dua tingkat `Produk` → `Jaket` karena pada tingkat yang sama dapat dibuat class lain yang memiliki ciri serupa, misalnya `Kaos` yang juga memiliki ukuran, bahan, dan warna. Dengan begitu atribut tersebut tidak perlu ditulis ulang pada class lain.
+- **`Produk`** adalah class induk yang menyimpan atribut dasar sebuah produk, yaitu `id_produk`, `merk`, dan `harga`. Ketiga atribut ini saya letakkan di sini karena segala sesuatu yang dijual di toko pasti memiliki ID, merk, dan harga, serta produk tidak selalu berupa barang fisik saja karena bisa juga berupa jasa. Atribut yang lebih spesifik seperti ukuran, bahan, dan warna tidak saya letakkan di `Produk` karena produk lain seperti voucher, pulsa, atau jasa servis tidak memiliki ukuran maupun warna. `Produk` saya jadikan class paling atas karena ia merupakan class yang paling general sehingga cocok menjadi superclass dari seluruh objek yang diturunkan, sehingga atribut dasar cukup ditulis satu kali saja tanpa diulang pada setiap class turunan (prinsip DRY).
+- **`Pakaian`** adalah class turunan `Produk` yang menambah atribut `ukuran`, `bahan`, dan `warna`. `Pakaian` merupakan kategori yang lebih khusus dari `Produk`, karena semua pakaian jelas merupakan produk tetapi tidak semua produk merupakan pakaian. Ketiga atribut tersebut hanya relevan untuk produk yang dipakai pada tubuh seperti kaos, kemeja, dan dress, sedangkan produk non-pakaian seperti TV, rice cooker, atau shampoo tidak memiliki ukuran maupun warna yang punya arti mode. Saya memilih `Pakaian` sebagai class perantara dan tidak langsung menurunkan `Jaket` dari `Produk`, karena jika langsung diturunkan maka `ukuran`, `bahan`, dan `warna` harus ditulis ulang pada `Jaket`.
+- **`Jaket`** adalah class turunan `Pakaian` yang menambah atribut `jenis_penutup`, `kupluk`, dan `jumlah_saku`. Saya memilih satu contoh saja yaitu jaket karena ke depannya program ini bisa ditambahkan class lain seperti `Kaos`, `Kemeja`, atau `Celana` yang diturunkan dari `Pakaian`, sehingga otomatis menjadi turunan `Produk` juga tanpa perlu menulis ulang atribut. Ketiga atribut tersebut hanya saya letakkan pada `Jaket` karena benar-benar hanya relevan untuk jaket, yaitu `jenis_penutup` yang hanya ada pada pakaian jenis outer, `kupluk` yang hanya ada pada jaket penutup kepala, dan `jumlah_saku` yang tidak dimiliki kaos, sehingga menaruhnya di `Pakaian` atau `Produk` akan membuat sebagian besar class turunan memiliki atribut kosong yang tidak pernah diisi. Saya memilih tiga tingkat `Produk` → `Pakaian` → `Jaket` dan bukan langsung dua tingkat karena pada tingkat yang sama dapat dibuat class lain yang memiliki ciri serupa, misalnya `Kaos` yang juga memiliki ukuran, bahan, dan warna.
 
 Atribut `foto` sengaja hanya ada pada versi PHP karena pada program CLI tidak ada media yang cukup untuk menampilkan gambar, sedangkan pada program Web foto dapat langsung dirender di dalam tabel.
 
@@ -194,25 +143,19 @@ g++ Main.cpp -o Main
 ./Main
 ```
 
-### Menambahkan Data
+### 1. Menambahkan dan Menampilkan Data
+Format perintah, field teks diapit tanda kutip sedangkan field angka dan boolean ditulis polos.
 ```bash
 INSERT "id_produk" "merk" harga "ukuran" "bahan" "warna" "jenis_penutup" kupluk jumlah_saku;
-```
-
-### Menampilkan Data
-```bash
 SHOW;
 ```
+<img src="./Dokumentasi/CPP/image1.png" width=600>
 
-### Menampilkan Bantuan
+### 2. Menampilkan Bantuan
 ```bash
 HELP;
 ```
-
-### Keluar
-```bash
-EXIT;
-```
+<img src="./Dokumentasi/CPP/image2.png" width=600>
 
 ---
 
@@ -227,26 +170,19 @@ javac Main.java
 java Main
 ```
 
-### Menambahkan Data
+### 1. Menambahkan dan Menampilkan Data
 Format perintah, field teks diapit tanda kutip sedangkan field angka dan boolean ditulis polos.
 ```bash
 INSERT "id_produk" "merk" harga "ukuran" "bahan" "warna" "jenis_penutup" kupluk jumlah_saku;
-```
-
-### Menampilkan Data
-```bash
 SHOW;
 ```
+<img src="./Dokumentasi/Java/image1.png" width=600>
 
-### Menampilkan Bantuan
+### 2. Menampilkan Bantuan
 ```bash
 HELP;
 ```
-
-### Keluar
-```bash
-EXIT;
-```
+<img src="./Dokumentasi/Java/image2.png" width=600>
 
 ---
 
@@ -258,26 +194,19 @@ cd Python/
 python Main.py
 ```
 
-### Menambahkan Data
+### 1. Menambahkan dan Menampilkan Data
 Format perintah, field teks diapit tanda kutip sedangkan field angka dan boolean ditulis polos.
 ```bash
 INSERT "id_produk" "merk" harga "ukuran" "bahan" "warna" "jenis_penutup" kupluk jumlah_saku;
-```
-
-### Menampilkan Data
-```bash
 SHOW;
 ```
+<img src="./Dokumentasi/Python/image1.png" width=600>
 
-### Menampilkan Bantuan
+### 2. Menampilkan Bantuan
 ```bash
 HELP;
 ```
-
-### Keluar
-```bash
-EXIT;
-```
+<img src="./Dokumentasi/Python/image2.png" width=600>
 
 ---
 
