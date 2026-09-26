@@ -81,6 +81,14 @@ def bantuan():
     print("  HELP ;         -> Menampilkan daftar perintah ini")
     print("  EXIT ;         -> Keluar dari produt management")
     print()
+    print("HOW TO INSERT JAKET :")
+    print('  INSERT "id_produk" "merk" harga "ukuran" "bahan" "warna" '
+          '"jenis_penutup" kupluk jumlah_saku;')
+    print()
+    print("Contoh perintah :")
+    print('  INSERT "JKT001" "Nike" 250000 "M" "Katon" "Hitam" '
+          '"Yukka" true 2;')
+    print()
 
 
 def rapikan(teks):
@@ -236,7 +244,9 @@ def sel_jaket(jaket):
         jaket.get_bahan(),
         jaket.get_warna(),
         jaket.get_jenis_penutup(),
-        "true" if jaket.get_kupluk() else "false",
+        # Nilai kupluk disimpan sebagai True atau False, saat ditampilkan
+        # ditulis dalam bahasa Indonesia
+        "ada" if jaket.get_kupluk() else "tidak ada",
         str(jaket.get_jumlah_saku())
     ]
 

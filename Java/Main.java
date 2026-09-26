@@ -90,6 +90,17 @@ public class Main {
         System.out.println("  HELP ;         -> Menampilkan daftar perintah ini");
         System.out.println("  EXIT ;         -> Keluar dari produt management");
         System.out.println();
+        System.out.println("HOW TO INSERT JAKET :");
+        System.out.println("  INSERT \"id_produk\" \"merk\" harga \"ukuran\" \"bahan\" "
+                + "\"warna\" \"jenis_penutup\" kupluk jumlah_saku;");
+        System.out.println();
+
+        System.out.println("Contoh perintah :");
+        System.out.println("  INSERT \"JKT001\" \"Nike\" 250000 \"M\" \"Katon\" "
+                + "\"Hitam\" \"Yukka\" true 2;");
+        System.out.println();
+
+        System.out.println("Ketik HELP untuk melihat daftar perintah.");
     }
 
     // Memangkas spasi di awal dan akhir teks
@@ -305,7 +316,9 @@ public class Main {
             jaket.getBahan(),
             jaket.getWarna(),
             jaket.getJenisPenutup(),
-            jaket.isKupluk() ? "true" : "false",
+            // Nilai kupluk disimpan sebagai true atau false, saat ditampilkan
+            // ditulis dalam bahasa Indonesia
+            jaket.isKupluk() ? "ada" : "tidak ada",
             String.valueOf(jaket.getJumlahSaku())
         };
     }

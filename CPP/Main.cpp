@@ -84,6 +84,14 @@ void bantuan() {
     printf("  SHOW ;         -> Menampilkan semua Jaket yang tersimpan\n");
     printf("  HELP ;         -> Menampilkan daftar perintah ini\n");
     printf("  EXIT ;         -> Keluar dari produt management\n");
+    
+    printf("\n");
+    printf("HOW TO INSERT JAKET :\n");
+    printf("  INSERT \"id_produk\" \"merk\" harga \"ukuran\" \"bahan\" \"warna\" \"jenis_penutup\" kupluk jumlah_saku;\n");
+    printf("\n");
+
+    printf("Contoh perintah :\n");
+    printf("  INSERT \"JKT001\" \"Nike\" 250000 \"M\" \"Katon\" \"Hitam\" \"Yukka\" true 2;\n");
     printf("\n");
 }
 
@@ -304,7 +312,9 @@ void selJaket(Jaket& jaket, string isi[]) {
     isi[4] = jaket.getBahan();
     isi[5] = jaket.getWarna();
     isi[6] = jaket.getJenisPenutup();
-    isi[7] = jaket.getJenisKupluk() ? "true" : "false";
+    // Nilai kupluk disimpan sebagai true atau false, saat ditampilkan
+    // ditulis dalam bahasa Indonesia
+    isi[7] = jaket.getJenisKupluk() ? "ada" : "tidak ada";
     isi[8] = to_string(jaket.getJumlahSaku());
 }
 
