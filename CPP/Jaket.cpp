@@ -1,5 +1,7 @@
+#include "Pakaian.cpp"
+
 // Class Jaket
-class Jaket{
+class Jaket : public Pakaian{
     private:
         // Atribut
         string jenis_penutup;

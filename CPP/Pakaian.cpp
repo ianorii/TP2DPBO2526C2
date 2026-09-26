@@ -1,5 +1,7 @@
+#include "Produk.cpp"
+
 // Class Pakaian
-class Pakaian {
+class Pakaian : public Produk{
     protected:
         // Atribut
         string ukuran;
